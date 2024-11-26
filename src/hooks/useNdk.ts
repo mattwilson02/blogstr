@@ -1,3 +1,3 @@
-import { createStore } from "nostr-hooks";
+import { createStore } from 'nostr-hooks'
 
-export const useNdk = createStore("ndk-store");
+export const useNdk = createStore('ndk-store')

@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import { useNdk } from "@/hooks/useNdk";
-import { useActiveUser } from "nostr-hooks";
+import { useNdk } from '@/hooks/useNdk'
+import { useActiveUser } from 'nostr-hooks'
 
 export default function Profile() {
-  const { ndk } = useNdk();
-  const { activeUser } = useActiveUser(ndk);
+	const { ndk } = useNdk()
+	const { activeUser } = useActiveUser(ndk)
 
-  return (
-    <div>
-      <h1>{activeUser?.npub}</h1>
-    </div>
-  );
+	return (
+		<div>
+			<h1>{activeUser?.npub}</h1>
+		</div>
+	)
 }
