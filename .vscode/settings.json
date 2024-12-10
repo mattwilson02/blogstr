@@ -38,5 +38,6 @@
         "cmd": "npx @biomejs/biome lint ${file} --write --unsafe"
       }
     ]
-  }
+  },
+  "workbench.colorTheme": "Night Owl"
 }

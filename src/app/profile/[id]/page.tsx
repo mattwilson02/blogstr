@@ -1,11 +1,9 @@
 'use client'
 
-import { useNdk } from '@/hooks/useNdk'
 import { useActiveUser } from 'nostr-hooks'
 
 export default function Profile() {
-	const { ndk } = useNdk()
-	const { activeUser } = useActiveUser(ndk)
+	const { activeUser } = useActiveUser(true)
 
 	return (
 		<div>

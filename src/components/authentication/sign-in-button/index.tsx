@@ -1,24 +1,36 @@
 'use client'
 
-import { useNdk } from '@/hooks/useNdk'
-import { NDKNip07Signer } from '@nostr-dev-kit/ndk'
+import { useNdk } from 'nostr-hooks'
+import { NDKNip07Signer, type NDKSigner } from '@nostr-dev-kit/ndk'
 import { useRouter } from 'next/navigation'
+import { useLogin } from 'nostr-hooks'
+import { useEffect } from 'react'
 
 const SignInButton = () => {
 	const router = useRouter()
-	const { loginWithExtension, setSigner } = useNdk()
+	const { setSigner } = useNdk()
+	const { loginWithExtension } = useLogin()
 
 	const onSignIn = async () => {
 		const nip07signer = new NDKNip07Signer()
 
 		setSigner(nip07signer)
 		loginWithExtension({
-			onSuccess: (signer) =>
+			onSuccess: (signer: NDKSigner) => {
 				signer.user().then((user) => {
+					console.log(user.npub)
+					localStorage.setItem('npub', user.npub)
 					router.push(`/profile/${user.npub}`)
-				}),
+				})
+			},
 		})
 	}
+
+	useEffect(() => {
+		if (localStorage.getItem('npub')) {
+			router.push(`/profile/${localStorage.getItem('npub')}`)
+		}
+	}, [router])
 
 	return (
 		<button

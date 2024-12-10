@@ -1,6 +1,6 @@
 'use client'
 import { type PropsWithChildren, useEffect } from 'react'
-import { useNdk } from '@/hooks/useNdk'
+import { useNdk } from 'nostr-hooks'
 
 const NostrProvider = ({ children }: PropsWithChildren) => {
 	const { initNdk, ndk } = useNdk()
