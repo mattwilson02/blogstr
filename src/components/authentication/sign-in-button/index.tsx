@@ -1,36 +1,39 @@
 'use client'
 
-import { useNdk } from 'nostr-hooks'
-import { NDKNip07Signer, type NDKSigner } from '@nostr-dev-kit/ndk'
+import { api } from '@/lib/api'
+import type { NDKSigner } from '@nostr-dev-kit/ndk'
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useLogin } from 'nostr-hooks'
-import { useEffect } from 'react'
 
 const SignInButton = () => {
 	const router = useRouter()
-	const { setSigner } = useNdk()
 	const { loginWithExtension } = useLogin()
 
-	const onSignIn = async () => {
-		const nip07signer = new NDKNip07Signer()
+	const { mutateAsync: signIn } = useMutation({
+		mutationKey: ['sign-in'],
+		mutationFn: async (npub: string) => {
+			const response = await api.post('/user-npub', {
+				npub,
+			})
 
-		setSigner(nip07signer)
+			return response.data
+		},
+	})
+
+	const onSignIn = async () => {
 		loginWithExtension({
 			onSuccess: (signer: NDKSigner) => {
-				signer.user().then((user) => {
-					console.log(user.npub)
-					localStorage.setItem('npub', user.npub)
-					router.push(`/profile/${user.npub}`)
+				signer.user().then(async (user) => {
+					const response = await signIn(user.npub)
+
+					if (response.status === 200) {
+						router.push(`/profile/${user.npub}`)
+					}
 				})
 			},
 		})
 	}
-
-	useEffect(() => {
-		if (localStorage.getItem('npub')) {
-			router.push(`/profile/${localStorage.getItem('npub')}`)
-		}
-	}, [router])
 
 	return (
 		<button

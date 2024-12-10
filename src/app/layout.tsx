@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import NostrProvider from '@/components/providers/nostr-provider'
+import ClientProviders from '@/components/providers/client-providers'
 
 export const metadata: Metadata = {
 	title: 'Blogstr',
@@ -15,7 +15,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className='bg-gray-900 h-screen'>
-				<NostrProvider>{children}</NostrProvider>
+				<ClientProviders>{children}</ClientProviders>
 			</body>
 		</html>
 	)

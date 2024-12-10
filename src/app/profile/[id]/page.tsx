@@ -1,13 +1,11 @@
 'use client'
 
-import { useActiveUser } from 'nostr-hooks'
+// import { useProfile } from 'nostr-hooks'
 
 export default function Profile() {
-	const { activeUser } = useActiveUser(true)
+	// const { profile } = useProfile({
+	// 	npub: localStorage.getItem('npub') ?? '',
+	// })
 
-	return (
-		<div>
-			<h1>{activeUser?.npub}</h1>
-		</div>
-	)
+	return <div>{/* <h1>{profile?.name}</h1> */}</div>
 }
