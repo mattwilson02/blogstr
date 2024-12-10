@@ -5,15 +5,13 @@ export async function GET() {
 	const cookieStore = await cookies()
 	const npub = cookieStore.get('npub')
 
-	return {
+	return Response.json({
 		npub,
-	}
+	})
 }
 
 export async function POST(request: NextRequest) {
 	const requestBody = await request.json()
-
-	console.log(requestBody)
 
 	const npub = requestBody.npub
 

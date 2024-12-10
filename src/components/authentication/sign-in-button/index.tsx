@@ -3,6 +3,7 @@
 import { api } from '@/lib/api'
 import type { NDKSigner } from '@nostr-dev-kit/ndk'
 import { useMutation } from '@tanstack/react-query'
+import type { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useLogin } from 'nostr-hooks'
 
@@ -10,7 +11,11 @@ const SignInButton = () => {
 	const router = useRouter()
 	const { loginWithExtension } = useLogin()
 
-	const { mutateAsync: signIn } = useMutation({
+	const { mutateAsync: signIn } = useMutation<
+		{ status: number },
+		AxiosError,
+		string
+	>({
 		mutationKey: ['sign-in'],
 		mutationFn: async (npub: string) => {
 			const response = await api.post('/user-npub', {
