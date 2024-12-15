@@ -3,6 +3,7 @@
 import { type NDKFilter, NDKKind } from '@nostr-dev-kit/ndk'
 import { useSubscription } from 'nostr-hooks'
 import { useEffect } from 'react'
+import PostCard from '../post-card'
 
 const FeedList = () => {
 	const {
@@ -41,14 +42,11 @@ const FeedList = () => {
 	return (
 		<ul className='flex w-1/2 flex-col gap-2 max-h-[80vh] overflow-y-scroll'>
 			{blogPosts?.map((post) => (
-				<li
-					className='flex flex-col rounded gap-2 cursor-pointer p-4 border border-gray-700'
-					key={post.id}>
-					<h1 className='text-2xl overflow-x-hidden'>{post.tags[1][1]}</h1>
-					<p className='overflow-x-hidden text-xs text-gray-400'>
-						{post.content.slice(0, 100)}...
-					</p>
-				</li>
+				<PostCard
+					key={post.id}
+					title={post.tags[1][1]}
+					bodyPreview={post.content.slice(0, 100)}
+				/>
 			))}
 		</ul>
 	)
