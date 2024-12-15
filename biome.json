@@ -19,8 +19,14 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			},
 			"a11y": {
 				"useKeyWithClickEvents": "off"
+			},
+			"complexity": {
+				"noUselessLoneBlockStatements": "off"
 			},
 			"correctness": {
 				"noUnusedImports": {
@@ -38,6 +44,7 @@
 	},
 	"javascript": {
 		"formatter": {
+			"bracketSameLine": true,
 			"quoteStyle": "single",
 			"semicolons": "asNeeded",
 			"jsxQuoteStyle": "single"

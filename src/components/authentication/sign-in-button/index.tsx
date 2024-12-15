@@ -44,8 +44,7 @@ const SignInButton = () => {
 		<button
 			onClick={onSignIn}
 			type='button'
-			className='p-2 bg-purple-700 active:bg-purple-800 hover:bg-purple-900 rounded-md min-w-48'
-		>
+			className='p-2 bg-purple-700 active:bg-purple-800 hover:bg-purple-900 rounded-md min-w-48'>
 			Sign In
 		</button>
 	)

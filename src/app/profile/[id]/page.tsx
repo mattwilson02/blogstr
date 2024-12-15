@@ -1,8 +1,6 @@
-'use client'
-
 // import { useProfile } from 'nostr-hooks'
 
-export default function Profile() {
+export default async function Profile() {
 	// const { profile } = useProfile({
 	// 	npub: localStorage.getItem('npub') ?? '',
 	// })
