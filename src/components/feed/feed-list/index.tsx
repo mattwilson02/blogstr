@@ -3,7 +3,7 @@
 import { type NDKFilter, NDKKind } from '@nostr-dev-kit/ndk'
 import { useSubscription } from 'nostr-hooks'
 import { useEffect } from 'react'
-import PostCard from '../post-card'
+import ArticleCard from '../article-card'
 
 const FeedList = () => {
 	const {
@@ -42,8 +42,9 @@ const FeedList = () => {
 	return (
 		<ul className='flex w-1/2 flex-col gap-2 max-h-[80vh] overflow-y-scroll'>
 			{blogPosts?.map((post) => (
-				<PostCard
+				<ArticleCard
 					key={post.id}
+					id={post.id}
 					title={post.tags[1][1]}
 					bodyPreview={post.content.slice(0, 100)}
 				/>
